@@ -77,24 +77,17 @@
                 </executions>
                 <configuration>
                     <finalName>${project.artifactId}</finalName>
+
+                    <startupFeatures>
+                        <feature>wrap</feature>
+                    </startupFeatures>
+
                     <installedBundles>
                         <installedBundle>mvn:commons-lang/commons-lang/2.6</installedBundle>
                     </installedBundles>
 
                     <bootFeatures>
-                        <feature>bundle</feature>
-                        <feature>config</feature>
-                        <feature>diagnostic</feature>
-                        <feature>feature</feature>
-                        <feature>jaas</feature>
-                        <feature>shell</feature>
-                        <feature>log</feature>
-                        <feature>management</feature>
-                        <feature>package</feature>
-                        <feature>shell-compat</feature>
-                        <feature>ssh</feature>
-                        <feature>system</feature>
-                        <feature>wrap</feature>
+                        <feature>standard</feature>
                         <feature>scr</feature>
 
                         <feature>karaf-navarrop-custom-features-rest</feature>
