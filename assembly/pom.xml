@@ -50,7 +50,6 @@
             <classifier>features</classifier>
             <type>xml</type>
         </dependency>
-
         <dependency>
             <groupId>com.navarrop</groupId>
             <artifactId>karaf-navarrop-custom-features-rest</artifactId>
@@ -73,19 +72,8 @@
                     </installedBundles>
                     <bootFeatures>
                         <feature>bundle</feature>
-                        <feature>config</feature>
-                        <feature>diagnostic</feature>
                         <feature>feature</feature>
-                        <feature>jaas</feature>
-                        <feature>shell</feature>
-                        <feature>log</feature>
-                        <feature>management</feature>
-                        <feature>package</feature>
-                        <feature>shell-compat</feature>
-                        <feature>ssh</feature>
-                        <feature>system</feature>
                         <feature>wrap</feature>
-
                         <feature>karaf-navarrop-custom-features-rest</feature>
                     </bootFeatures>
                     <archiveZip>false</archiveZip>
