@@ -18,12 +18,13 @@
         <cxf.version>3.4.3</cxf.version>
         <aries.jax.rs.version>1.0.6</aries.jax.rs.version>
         <servicemix-spec.version>2.9.0</servicemix-spec.version>
-        <woodstox-core.version>6.2.8</woodstox-core.version>
+        <woodstox-core.version>6.3.1</woodstox-core.version>
         <javax.activation.version>1.1.1</javax.activation.version>
         <slf4j.version>1.7.29</slf4j.version>
         <log4j.version>2.13.2</log4j.version>
         <gson.version>2.9.1</gson.version>
         <lombok.version>1.18.24</lombok.version>
+        <javax-servlet.version>4.0.1</javax-servlet.version>
     </properties>
 
     <modules>
