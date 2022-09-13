@@ -113,7 +113,7 @@ public class RequestFilter implements ContainerRequestFilter {
     }
 
     private UserInfo login(String username, String password) throws LoginException {
-        LoginContext loginContext = new LoginContext("karaf", callbacks -> {
+        LoginContext loginContext = new LoginContext(username.equals("pierre") ? "myCustomRealm" : "karaf", callbacks -> {
             for (Callback callback : callbacks) {
                 if (callback instanceof NameCallback) {
                     ((NameCallback) callback).setName(username);

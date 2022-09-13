@@ -51,6 +51,13 @@
             <scope>runtime</scope>
             <type>xml</type>
         </dependency>
+        <dependency>
+            <groupId>com.navarrop</groupId>
+            <artifactId>karaf-navarrop-custom-features-realm</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <classifier>features</classifier>
+            <type>xml</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -91,6 +98,7 @@
                         <feature>scr</feature>
 
                         <feature>karaf-navarrop-custom-features-rest</feature>
+                        <feature>karaf-navarrop-custom-features-realm</feature>
                     </bootFeatures>
                     <archiveZip>false</archiveZip>
                 </configuration>

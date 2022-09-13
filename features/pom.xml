@@ -16,6 +16,7 @@
 
     <modules>
         <module>rest</module>
+        <module>realm</module>
     </modules>
 
 </project>
