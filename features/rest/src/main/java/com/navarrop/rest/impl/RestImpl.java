@@ -40,6 +40,8 @@ public class RestImpl implements RestApi {
 
     @Override
     public String user(SecurityContext securityContext, String message) {
-        return ((UserInfo)securityContext.getUserPrincipal()).toJsonString();
+        String user = ((UserInfo) securityContext.getUserPrincipal()).toJsonString();
+        logger.info("user({})", user);
+        return user;
     }
 }
