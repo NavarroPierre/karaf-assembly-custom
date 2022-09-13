@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <karaf.version>4.4.0</karaf.version>
+        <karaf.version>4.4.1</karaf.version>
         <pax-logging-log4j2.version>1.10.2</pax-logging-log4j2.version>
         <jax-rs-api.version>2.1</jax-rs-api.version>
         <osgi.version>7.0.0</osgi.version>

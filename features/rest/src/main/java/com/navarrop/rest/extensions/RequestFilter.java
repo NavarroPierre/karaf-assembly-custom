@@ -130,22 +130,10 @@ public class RequestFilter implements ContainerRequestFilter {
         }
 
         UserInfo userInfo = new UserInfo();
-        LoginContext ctx = null;
-        ctx = new LoginContext("karaf", callbacks -> {
-            for (Callback callback : callbacks) {
-                if (callback instanceof NameCallback) {
-                    ((NameCallback) callback).setName(username);
-                } else if (callback instanceof PasswordCallback) {
-                    ((PasswordCallback) callback).setPassword(password.toCharArray());
-                } else {
-                    throw new UnsupportedCallbackException(callback);
-                }
-            }});
-        ctx.login();
 
         List<String> roles = new ArrayList<>();
         List<String> groups = new ArrayList<>();
-        Subject subject = ctx.getSubject();
+        Subject subject = loginContext.getSubject();
         for (Principal p : subject.getPrincipals()) {
             if ((p instanceof RolePrincipal)) {
                 RolePrincipal g = (RolePrincipal) p;
