@@ -5,6 +5,7 @@ import org.apache.karaf.jaas.config.JaasRealm;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,12 +17,12 @@ import java.util.Map;
 public class CustomJaasRealmService implements JaasRealm
 {
     public static final String REALM_NAME = "myCustomRealm";
-    private static Logger logger = LoggerFactory.getLogger(CustomJaasRealmService.class);
+    private static final Logger logger = LoggerFactory.getLogger(CustomJaasRealmService.class);
 
     private AppConfigurationEntry[] configEntries;
 
     @Activate
-    public void activate(BundleContext bc)
+    public void start(BundleContext bc)
     {
         logger.info("STARTING");
 
@@ -37,6 +38,12 @@ public class CustomJaasRealmService implements JaasRealm
         options.put(BundleContext.class.getName(), bc);
 
         logger.info("STARTED");
+    }
+
+    @Deactivate
+    public void stop() {
+        logger.info("STOPPED");
+
     }
 
     @Override

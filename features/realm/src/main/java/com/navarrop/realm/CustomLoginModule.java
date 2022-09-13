@@ -1,7 +1,6 @@
 package com.navarrop.realm;
 
 import org.apache.karaf.jaas.boot.principal.GroupPrincipal;
-import org.apache.karaf.jaas.boot.principal.RolePolicy;
 import org.apache.karaf.jaas.boot.principal.RolePrincipal;
 import org.apache.karaf.jaas.boot.principal.UserPrincipal;
 import org.apache.karaf.jaas.modules.AbstractKarafLoginModule;
@@ -21,7 +20,7 @@ import java.util.Map;
 
 public class CustomLoginModule extends AbstractKarafLoginModule
 {
-    private static Logger logger = LoggerFactory.getLogger(CustomLoginModule.class);
+    private static final Logger logger = LoggerFactory.getLogger(CustomLoginModule.class);
 
     public void initialize(Subject subject, CallbackHandler callbackHandler,
                            Map<String, ?> sharedState, Map<String, ?> options)
@@ -77,18 +76,6 @@ public class CustomLoginModule extends AbstractKarafLoginModule
 
         succeeded = true;
 
-        return true;
-    }
-
-    public boolean abort() throws LoginException
-    {
-        return true;
-    }
-
-    public boolean logout() throws LoginException
-    {
-        subject.getPrincipals().removeAll(principals);
-        principals.clear();
         return true;
     }
 }

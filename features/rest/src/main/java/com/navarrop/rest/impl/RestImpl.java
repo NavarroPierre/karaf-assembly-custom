@@ -14,7 +14,7 @@ import java.util.Date;
 @Component(service = RestApi.class, property = { "osgi.jaxrs.resource=true" }, immediate = true)
 public class RestImpl implements RestApi {
 
-    private static Logger logger = LoggerFactory.getLogger(RestImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(RestImpl.class);
 
     @Activate
     public void start() {

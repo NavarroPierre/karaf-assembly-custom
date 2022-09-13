@@ -21,7 +21,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -37,9 +36,9 @@ public class RequestFilter implements ContainerRequestFilter {
     private HttpServletRequest httpServletRequest;
 
     @Override
-    public void filter(ContainerRequestContext containerRequestContext) throws IOException {
+    public void filter(ContainerRequestContext containerRequestContext) {
 
-        SecurityContext securityContext = null;
+        SecurityContext securityContext;
         try {
             securityContext = getSecurityContextFromHeader(containerRequestContext);
             if( securityContext == null ) {
@@ -68,8 +67,9 @@ public class RequestFilter implements ContainerRequestFilter {
 
     private SecurityContext getSecurityContextFromHeader(final ContainerRequestContext requestContext) throws LoginException {
         String authorization = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
-        String login = "";
-        String password = "";
+        String login;
+        String password;
+        logger.info("{}", authorization);
         if (authorization != null && authorization.toLowerCase().startsWith("basic")) {
             // Authorization: Basic base64credentials
             String base64Credentials = authorization.substring("Basic".length()).trim();
@@ -81,9 +81,9 @@ public class RequestFilter implements ContainerRequestFilter {
             password = values[1];
             logger.info("login: {}, password: {}", login, password);
             UserInfo userInfo = login(login, password);
-            userInfo.setLogin(login);
-            logger.info("userInfo: {}", userInfo.toJsonString());
             if( userInfo != null ) {
+                userInfo.setLogin(login);
+                logger.info("userInfo: {}", userInfo.toJsonString());
                 return new SecurityContext() {
                     @Override
                     public UserInfo getUserPrincipal() {
