@@ -22,5 +22,6 @@ jobs:
     - name: Archive production
       uses: actions/upload-artifact@v3
       with:
-        name: dist-assembly
+        name: karaf-assembly
         path: assembly/target/*.tar.gz
+        retention-days: 1
