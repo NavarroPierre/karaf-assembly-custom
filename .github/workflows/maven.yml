@@ -19,11 +19,19 @@ jobs:
         distribution: 'adopt'
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Archive production
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag karaf-navarrop-custom-assembly:$(date +%s)
+    - name: Export the Docker image
+      run: docker save --output karaf-navarrop-custom-docker.tar karaf-navarrop-custom-assembly:$(date +%s)
+    - name: Archive assembly production
       uses: actions/upload-artifact@v3
       with:
         name: karaf-navarrop-custom-assembly
         path: assembly/target/*.tar.gz
         retention-days: 1
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag karaf-navarrop-custom-assembly:$(date +%s)
+    - name: Archive container production
+      uses: actions/upload-artifact@v3
+      with:
+        name: karaf-navarrop-custom-docker
+        path: a./*.tar
+        retention-days: 1
