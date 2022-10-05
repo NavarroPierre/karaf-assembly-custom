@@ -20,10 +20,9 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag karaf-navarrop-custom-assembly:$(date +%s)
+      run: docker build . --file Dockerfile --tag karaf-navarrop-custom-assembly
     - name: Export the Docker image
-      run: docker save --output karaf-navarrop-custom-docker.tar karaf-navarrop-custom-assembly:$(date +%s)
-    - name: Archive assembly production
+      run: docker save --output karaf-navarrop-custom-docker.tar karaf-navarrop-custom-assembly
       uses: actions/upload-artifact@v3
       with:
         name: karaf-navarrop-custom-assembly
