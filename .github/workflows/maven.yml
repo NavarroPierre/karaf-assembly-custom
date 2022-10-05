@@ -22,7 +22,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag karaf-navarrop-custom-assembly
     - name: Export the Docker image
-      run: docker save --output karaf-navarrop-custom-docker.tar karaf-navarrop-custom-assembly
+      run: docker save --output assembly/target/karaf-navarrop-custom-docker.tar karaf-navarrop-custom-assembly
     - name: Archive assembly production
       uses: actions/upload-artifact@v3
       with:
@@ -33,5 +33,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: karaf-navarrop-custom-docker
-        path: a./*.tar
+        path: assembly/target/*.tar
         retention-days: 1
