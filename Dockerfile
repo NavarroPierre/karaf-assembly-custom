@@ -1,0 +1,8 @@
+FROM openjdk:11-jre-slim
+ENV KARAF_INSTALL_PATH /opt
+ENV KARAF_HOME $KARAF_INSTALL_PATH/${project.artifactId}
+ENV KARAF_EXEC exec
+ENV PATH $PATH:$KARAF_HOME/bin
+COPY assembly $KARAF_HOME
+EXPOSE 8101 1099 44444 8181
+CMD ["karaf", "run"]

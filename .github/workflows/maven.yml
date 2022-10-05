@@ -22,6 +22,8 @@ jobs:
     - name: Archive production
       uses: actions/upload-artifact@v3
       with:
-        name: karaf-assembly
+        name: karaf-navarrop-custom-assembly
         path: assembly/target/*.tar.gz
         retention-days: 1
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag karaf-navarrop-custom-assembly:$(date +%s)
