@@ -5,6 +5,10 @@ name: Java CI with Maven
 
 on: [push]
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs:
   build:
 
@@ -19,19 +23,29 @@ jobs:
         distribution: 'adopt'
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag karaf-navarrop-custom-assembly
-    - name: Export the Docker image
-      run: docker save --output assembly/target/karaf-navarrop-custom-docker.tar karaf-navarrop-custom-assembly
     - name: Archive assembly production
       uses: actions/upload-artifact@v3
       with:
         name: karaf-navarrop-custom-assembly
         path: assembly/target/*.tar.gz
         retention-days: 1
-    - name: Archive container production
-      uses: actions/upload-artifact@v3
+    - name: Log in to the Container registry
+      uses: docker/login-action@v2
       with:
-        name: karaf-navarrop-custom-docker
-        path: assembly/target/*.tar
-        retention-days: 1
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@v4
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
