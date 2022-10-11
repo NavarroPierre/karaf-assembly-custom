@@ -18,7 +18,7 @@
                 <repository>
                     <id>github</id>
                     <name>GitHub Packages</name>
-                    <url>https://maven.pkg.github.com/navarropierre/</url>
+                    <url>https://maven.pkg.github.com/NavarroPierre/karaf-assembly-custom</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>

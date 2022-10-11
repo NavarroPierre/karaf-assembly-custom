@@ -90,7 +90,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/navarropierre/karaf-assembly-custom</url>
+            <url>https://maven.pkg.github.com/NavarroPierre/karaf-assembly-custom</url>
         </repository>
     </distributionManagement>
 
