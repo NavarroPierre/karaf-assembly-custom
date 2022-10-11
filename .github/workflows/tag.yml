@@ -26,8 +26,10 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
+    - name: Debug
+      run: cat ~/.m2/settings.xml
     - name: Build and publish packages
-      run: mvn --batch-mode deploy -s maven-ressources/settings.xml
+      run: mvn --batch-mode deploy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_USERNAME: ${{ secrets.USERNAME }}
