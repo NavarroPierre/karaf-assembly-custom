@@ -6,8 +6,8 @@ name: Master and Feature CI
 on:
   push:
     branches:
-      - 'master'
-      - 'feature/*'
+      - main
+      - feature/*
 
 jobs:
   build:
