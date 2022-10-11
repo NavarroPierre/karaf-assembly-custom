@@ -30,8 +30,8 @@ jobs:
       run: mvn --batch-mode deploy -s maven-ressources/settings.xml
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_USERNAME: ${{ custom.USERNAME }}
-        GITHUB_PASSWORD: ${{ custom.PAT }}
+        GITHUB_USERNAME: ${{ secrets.USERNAME }}
+        GITHUB_PASSWORD: ${{ secrets.PAT }}
     - name: Log in to the Container registry
       uses: docker/login-action@v2
       with:
