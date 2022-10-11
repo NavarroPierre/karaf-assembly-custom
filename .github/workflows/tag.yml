@@ -7,8 +7,6 @@ on:
   push:
     tags:
       - '*'
-    branches:
-      - main
 
 env:
   REGISTRY: ghcr.io
@@ -32,8 +30,6 @@ jobs:
       run: mvn --batch-mode deploy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_USERNAME: ${{ secrets.USERNAME }}
-        GITHUB_PASSWORD: ${{ secrets.PAT }}
     - name: Log in to the Container registry
       uses: docker/login-action@v2
       with:
