@@ -16,7 +16,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11
@@ -47,12 +46,21 @@ jobs:
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-    - name: Build Docker images
+    - name: Build LINUX Docker images
       uses: docker/build-push-action@v3
       with:
         context: .
-        file: ./Dockerfile
-        platforms: linux/amd64,linux/arm64,windows/amd64
+        file: ./Dockerfile.linux
+        platforms: linux/amd64,linux/arm64
+        push: false
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+    - name: Build WINDOWS Docker images
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        file: ./Dockerfile.windows
+        platforms: windows/amd64
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
