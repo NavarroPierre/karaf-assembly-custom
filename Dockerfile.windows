@@ -1,5 +1,5 @@
 FROM openjdk:11-jre
-COPY "assembly\\target\\assembly" "C:\\karaf"
+COPY assembly/target/assembly /karaf
 RUN setx path "%path%;C:\\karaf\\bin\\"
 EXPOSE 8101 1099 44444 8181
 CMD ["karaf.bat"]
