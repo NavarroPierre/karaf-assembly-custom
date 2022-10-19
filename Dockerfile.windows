@@ -1,6 +1,5 @@
 FROM openjdk:11-jre
-ENV KARAF_HOME C:\\opt\karaf
-ENV KARAF_EXEC exec
-COPY assembly/target/assembly $KARAF_HOME
+COPY assembly\target\assembly C:\karaf
+RUN setx path "%path%;C:\\karaf\\bin\\"
 EXPOSE 8101 1099 44444 8181
-CMD ["C:\\opt\karaf\bin\karaf.bat"]
+CMD ["karaf.bat"]
