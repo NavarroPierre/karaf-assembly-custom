@@ -1,9 +1,8 @@
-FROM openjdk:11-jre
-ARG TARGETOS
-
-COPY assembly/target/assembly /opt/karaf
-RUN if [ "x$TARGETOS" = "xlinux" ] ; then export PATH=$PATH:/opt/karaf/bin; fi
-RUN if [ "x$TARGETOS" = "xwindows" ] ; then setx path '%path%;C:\opt\karaf\bin'; fi
-
+FROM openjdk:11-jre-slim
+ENV KARAF_INSTALL_PATH /opt
+ENV KARAF_HOME $KARAF_INSTALL_PATH/karaf
+ENV KARAF_EXEC exec
+ENV PATH $PATH:$KARAF_HOME/bin
+COPY assembly/target/assembly $KARAF_HOME
 EXPOSE 8101 1099 44444 8181
-CMD ["karaf", "karaf.bat"]
+CMD ["karaf", "run"]
