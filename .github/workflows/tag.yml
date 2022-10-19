@@ -47,11 +47,21 @@ jobs:
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-    - name: Build and push Docker image
+    - name: Build and push Docker image linux
       uses: docker/build-push-action@v3
       with:
         context: .
-        platforms: linux/amd64,linux/arm64,windows/amd64
+        file: ./Dockerfile.linux
+        platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
+    #- name: Build and push Docker image windows
+    #  uses: docker/build-push-action@v3
+    #  with:
+    #    context: .
+    #    file: ./Dockerfile.windows
+    #    platforms: windows/amd64
+    #    push: true
+    #    tags: ${{ steps.meta.outputs.tags }}
+    #    labels: ${{ steps.meta.outputs.labels }}
