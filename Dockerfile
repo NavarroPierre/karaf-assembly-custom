@@ -1,6 +1,5 @@
 FROM openjdk:11-jre
 ARG TARGETOS
-RUN echo "I'm building for $TARGETOS "
 
 COPY assembly/target/assembly /opt/karaf
 
